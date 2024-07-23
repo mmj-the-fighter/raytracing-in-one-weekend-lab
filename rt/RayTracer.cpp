@@ -12,13 +12,13 @@ bool hit_sphere(const point3& center, double radius, const ray& r) {
 }
 
 color ray_color(const ray& r) {
-	//This double for loop is for simulating large delays
-	for (int i = 0; i < 100; i++)
-	{
-		for (int i = 0; i < 100; i++){
-			;
-		}
-	}
+	//This double for loop is for testing with large delays
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	for (int i = 0; i < 100; i++){
+	//		;
+	//	}
+	//}
 	//////////////////////
 	if (hit_sphere(point3(0, 0, -1), 0.5, r))
 		return color(1, 0, 0);
