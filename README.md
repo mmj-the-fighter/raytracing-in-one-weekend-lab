@@ -1,5 +1,5 @@
 # raytracing-in-one-weekend-lab
-Famous raytracing in one weekend s first example rendered using graphics lab framework.  
+Famous raytracing in one weekend series first example rendered using graphics lab framework.  
 [Demo on YouTube](https://www.youtube.com/watch?v=9zTTyxpE0AM)
 
 Using this project you can practice raytracing on CPU with live preview.  
