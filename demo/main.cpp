@@ -19,11 +19,14 @@ integrate alert with the framework
 */
 
 void process_input_for_alert(int x, int y){
-	if (is_alert_invoked && swr_is_pt_inside_rect(x, y, 10 - padding / 2, 40 - padding / 2, 45 + padding / 2, 60 + padding / 2) == 1) {
+	if (is_alert_invoked && 
+		swr_is_pt_inside_rect(x, y, 10 - padding / 2, 40 - padding / 2, 45 + padding / 2, 60 + padding / 2) == 1) {
 		write_ppm_raw(NULL, rt.GetPixels(), rt.GetImageWidth(), rt.GetImageHeight());
+		write_png_using_stb(NULL, rt.GetPixels(), rt.GetImageWidth(), rt.GetImageHeight());
 		is_alert_invoked = 0;
 	}
-	else if (is_alert_invoked && swr_is_pt_inside_rect(x, y, 50 - padding / 2, 40 - padding / 2, 80 + padding / 2, 60 + padding / 2) == 1) {
+	else if (is_alert_invoked && 
+		swr_is_pt_inside_rect(x, y, 50 - padding / 2, 40 - padding / 2, 80 + padding / 2, 60 + padding / 2) == 1) {
 			is_alert_invoked = 0;
 	}
 }
