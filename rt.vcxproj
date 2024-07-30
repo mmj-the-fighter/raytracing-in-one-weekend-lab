@@ -41,6 +41,7 @@
     <ClInclude Include="InOneWeekend\sphere.h" />
     <ClInclude Include="InOneWeekend\vec3.h" />
     <ClInclude Include="rt\RayTracer.h" />
+    <ClInclude Include="stb\stb_image_write.h" />
     <ClInclude Include="swr\swr_image.h" />
     <ClInclude Include="swr\swr_pixel.h" />
     <ClInclude Include="swr\swr_rasterizer.h" />
