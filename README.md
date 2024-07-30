@@ -5,4 +5,4 @@ Famous raytracing in one weekend series first example rendered using graphics la
 Using this project you can practice raytracing on CPU with live preview.  
   
 Hit space bar to toggle file save alert at any time.  
-Rendered images can be saved as raw ppm files
+Rendered images can be saved as raw ppm files and png files
