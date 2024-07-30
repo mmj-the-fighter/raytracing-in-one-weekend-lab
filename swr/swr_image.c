@@ -5,6 +5,59 @@
 #include <ctype.h>
 #include "swr_pixel.h"
 #include "swr_image.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "../stb/stb_image_write.h"
+
+void write_png_using_stb(const char* filename, unsigned char* pixels, int width, int height)
+{
+#define BPP 3
+	time_t tm;
+	char fn[256];
+	int x, y;
+	int r, g, b;
+	int i;
+	unsigned char* png_data;
+	int pitch = width * 4;
+	unsigned char* loc;
+
+	if (filename != NULL) {
+		strcpy(fn, filename);
+	}
+	else
+	{
+		/* if filename is not given, Make file name from time stamp*/
+		tm = time(NULL);
+		for (i = 0; i < 256; i++) {
+			fn[i] = '\0';
+		}
+		strftime(fn, sizeof(fn), "IMG_%Y_%m_%d_%H_%M_%S.png", localtime(&tm));
+	}
+
+	png_data = (unsigned char*)malloc(width * height * BPP * sizeof(unsigned char));
+	if (png_data == NULL) {
+		printf("insufficient memory, cannot write pixel data");
+		return;
+	}
+
+	i = 0;
+	for (y = 0; y < height; ++y)
+	{
+		for (x = 0; x < width; ++x)
+		{
+			loc = pixels + pitch * y + x * 4;
+			b = *loc++;
+			g = *loc++;
+			r = *loc++;
+			png_data[i++] = r;
+			png_data[i++] = g;
+			png_data[i++] = b;
+		}
+	}
+
+	stbi_write_png(fn, width, height, BPP, png_data, width * BPP);
+	free(png_data);
+#undef BPP
+}
 
 void write_ppm_raw(const char* filename, unsigned char* pixels, int width, int height)
 {
@@ -22,6 +75,9 @@ void write_ppm_raw(const char* filename, unsigned char* pixels, int width, int h
 	{
 		/* if filename is not given, Make file name from time stamp*/
 		tm = time(NULL);
+		for (i = 0; i < 256; i++) {
+			fn[i] = '\0';
+		}
 		strftime(fn, sizeof(fn), "IMG_%Y_%m_%d_%H_%M_%S.ppm", localtime(&tm));
 	}
 	fp = fopen(fn, "wb");
@@ -65,6 +121,9 @@ void write_ppm_ascii(const char* filename, unsigned char* pixels, int width, int
 	{
 		/* if filename is not given, Make file name from time stamp*/
 		tm = time(NULL);
+		for (i = 0; i < 256; i++) {
+			fn[i] = '\0';
+		}
 		strftime(fn, sizeof(fn), "SCRN_%Y_%m_%d_%H_%M_%S.ppm", localtime(&tm));
 	}
 	fp = fopen(fn, "w");

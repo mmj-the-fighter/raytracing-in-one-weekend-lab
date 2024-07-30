@@ -7,6 +7,9 @@ extern "C" {
 
 	enum ByteOrder { LE, BE };
 
+	/* save image in png format using stb library */
+	void write_png_using_stb(const char* filename, unsigned char* pixels, int width, int height);
+
 	/* save image in raw ppm format */
 	void write_ppm_raw(const char* filename, unsigned char* pixels, int width, int height);
 
